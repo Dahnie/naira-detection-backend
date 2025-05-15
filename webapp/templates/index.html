@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Naira Note Detector for Visually Impaired Individuals">
+    <title>Naira Note Detector</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Add PWA support -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#008751">
+    <link rel="apple-touch-icon" href="/static/assets/icons/icon-192x192.png">
+</head>
+
+<body>
+    <header>
+        <h1>Naira Note Detector</h1>
+        <button id="settings-btn" class="icon-btn" aria-label="Settings">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path
+                    d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5zm7.43-2.53a7.77 7.77 0 0 0 .07-1 7.55 7.55 0 0 0-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46a.49.49 0 0 0-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.61.25-1.17.59-1.69.98l-2.49-1a.49.49 0 0 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c0 .34-.07.67-.07 1 0 .33.07.66.07 1l-2.11 1.63c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.63z" />
+            </svg>
+        </button>
+    </header>
+
+    <main>
+        <!-- Camera View -->
+        <div id="camera-container">
+            <video id="camera-feed" autoplay playsinline></video>
+            <div class="overlay-guides">
+                <div class="center-guide"></div>
+            </div>
+            <div class="action-buttons">
+                <button id="capture-btn" class="primary-btn" aria-label="Capture Photo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="12" cy="12" r="6" fill="currentColor" />
+                    </svg>
+                    <span>Capture</span>
+                </button>
+                <button id="upload-btn" class="secondary-btn" aria-label="Upload Photo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z" />
+                    </svg>
+                    <span>Upload</span>
+                </button>
+                <input type="file" id="file-input" accept="image/*" capture="environment" hidden>
+            </div>
+        </div>
+
+        <!-- Result View -->
+        <div id="result-container" style="display: none;">
+            <div class="result-header">
+                <button id="close-result-btn" class="icon-btn" aria-label="Back to Camera">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
+                </button>
+                <h2>Detection Result</h2>
+            </div>
+
+            <div class="result-content">
+                <div class="result-image-container">
+                    <img id="result-image" alt="Detected Naira Note">
+                </div>
+
+                <div class="result-info">
+                    <h3 id="denomination-text">Analyzing...</h3>
+
+                    <div class="confidence-container">
+                        <div class="confidence-bar-container">
+                            <div id="confidence-bar" class="confidence-bar"></div>
+                        </div>
+                        <p id="confidence-text">Confidence level</p>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button id="speak-result-btn" class="action-btn" aria-label="Speak Result">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                        </svg>
+                        <span>Speak Result</span>
+                    </button>
+                    <button id="new-scan-btn" class="action-btn" aria-label="New Scan">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                        </svg>
+                        <span>New Scan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Settings Modal (Hidden by default) -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button id="close-settings-btn" class="icon-btn" aria-label="Close Settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="settings-options">
+                <div class="setting-item">
+                    <label for="auto-speak">Automatically speak results</label>
+                    <label class="switch">
+                        <input type="checkbox" id="auto-speak" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label for="speech-rate">Speech Rate</label>
+                    <input type="range" id="speech-rate" min="0.5" max="2" step="0.1" value="1">
+                    <div class="range-values">
+                        <span>Slow</span>
+                        <span>Fast</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label for="speech-pitch">Speech Pitch</label>
+                    <input type="range" id="speech-pitch" min="0.5" max="2" step="0.1" value="1">
+                    <div class="range-values">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <button id="reset-settings-btn" class="secondary-btn">Reset to Defaults</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator">
+        <div class="spinner"></div>
+        <p>Processing Image...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- PWA Installation -->
+    <script src="/static/js/app.js"></script>
+    <script>
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/js/service-worker.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed: ', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
