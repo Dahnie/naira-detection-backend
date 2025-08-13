@@ -1,0 +1,24 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 9
+names:
+  [
+    "0",
+    "Fifty Naira",
+    "Five Hundred Naira",
+    "Five Naira",
+    "One Hundred Naira",
+    "One Thousand Naira",
+    "Ten Naira",
+    "Twenty Naira",
+    "Two Hundred Naira",
+  ]
+
+roboflow:
+  workspace: my-workspace-hoyyu
+  project: nigerian-naira-8dyw9
+  version: 5
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/my-workspace-hoyyu/nigerian-naira-8dyw9/dataset/5

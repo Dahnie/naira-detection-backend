@@ -34,3 +34,190 @@
 2025-05-14 23:59:32,151 [INFO] Detection completed: found 0 notes
 2025-05-15 00:01:34,626 [INFO] Detection completed: found 0 notes
 2025-05-15 00:01:45,054 [INFO] Detection completed: found 0 notes
+2025-08-07 12:25:19,086 [INFO] Detection completed: found 0 notes
+2025-08-07 13:12:50,578 [INFO] Detection completed: found 0 notes
+2025-08-07 13:12:58,792 [INFO] Detection completed: found 0 notes
+2025-08-07 13:13:04,443 [INFO] Detection completed: found 0 notes
+2025-08-07 13:16:40,177 [INFO] Detection completed: found 0 notes
+2025-08-07 13:19:06,501 [INFO] Detection completed: found 0 notes
+2025-08-07 13:20:06,466 [INFO] Detection completed: found 0 notes
+2025-08-07 13:22:14,902 [INFO] Detection completed: found 0 notes
+2025-08-07 13:22:28,544 [INFO] Detection completed: found 0 notes
+2025-08-07 13:24:50,159 [INFO] Detection completed: found 0 notes
+2025-08-07 13:24:59,661 [INFO] Detection completed: found 0 notes
+2025-08-07 13:26:21,938 [INFO] Detection completed: found 0 notes
+2025-08-07 13:29:38,360 [INFO] Detection completed: found 0 notes
+2025-08-07 13:30:42,716 [INFO] Detection completed: found 0 notes
+2025-08-07 13:31:02,003 [INFO] Detection completed: found 0 notes
+2025-08-07 13:32:43,190 [INFO] Detection completed: found 0 notes
+2025-08-07 13:38:35,877 [INFO] Detection completed: found 0 notes
+2025-08-07 13:39:37,467 [INFO] Detection completed: found 0 notes
+2025-08-07 13:43:58,138 [INFO] Detection completed: found 0 notes
+2025-08-07 13:53:56,728 [INFO] Detection completed: found 0 notes
+2025-08-07 14:27:32,053 [INFO] Detection completed: found 0 notes
+2025-08-07 14:30:27,602 [INFO] Detection completed: found 0 notes
+2025-08-07 16:11:18,538 [INFO] Detection completed: found 0 notes
+2025-08-07 16:15:05,287 [INFO] Detection completed: found 0 notes
+2025-08-07 16:15:05,290 [ERROR] Unhandled exception: 4 validation errors:
+  {'type': 'missing', 'loc': ('response', 'success'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'inference_time'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'detections'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'detection_count'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/fastapi/routing.py", line 327, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/fastapi/routing.py", line 176, in serialize_response
+    raise ResponseValidationError(
+fastapi.exceptions.ResponseValidationError: 4 validation errors:
+  {'type': 'missing', 'loc': ('response', 'success'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'inference_time'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'detections'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'detection_count'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+
+2025-08-07 16:15:12,533 [INFO] Detection completed: found 1 notes
+2025-08-07 16:15:20,479 [INFO] Detection completed: found 1 notes
+2025-08-07 16:15:51,413 [INFO] Detection completed: found 0 notes
+2025-08-07 16:15:51,414 [ERROR] Unhandled exception: 4 validation errors:
+  {'type': 'missing', 'loc': ('response', 'success'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'inference_time'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'detections'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'detection_count'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/fastapi/routing.py", line 327, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/fastapi/routing.py", line 176, in serialize_response
+    raise ResponseValidationError(
+fastapi.exceptions.ResponseValidationError: 4 validation errors:
+  {'type': 'missing', 'loc': ('response', 'success'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'inference_time'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'detections'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+  {'type': 'missing', 'loc': ('response', 'detection_count'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: list index out of range'}}
+
+2025-08-07 16:16:00,631 [INFO] Detection completed: found 0 notes
+2025-08-07 16:16:12,118 [INFO] Detection completed: found 1 notes
+2025-08-09 08:48:03,272 [INFO] Detection completed: found 0 notes
+2025-08-09 09:17:51,865 [INFO] Detection completed: found 0 notes
+2025-08-12 15:29:22,956 [INFO] Detection completed: found 1 notes
+2025-08-12 15:29:29,654 [INFO] Detection completed: found 1 notes
+2025-08-12 15:32:21,702 [INFO] Detection completed: found 1 notes
+2025-08-12 15:34:26,222 [INFO] Detection completed: found 1 notes
+2025-08-12 15:38:33,635 [INFO] Detection completed: found 1 notes
+2025-08-12 15:39:19,665 [INFO] Detection completed: found 1 notes
+2025-08-12 15:39:33,127 [INFO] Detection completed: found 1 notes
+2025-08-12 15:39:48,357 [INFO] Detection completed: found 1 notes
+2025-08-12 15:41:07,517 [INFO] Detection completed: found 1 notes
+2025-08-12 15:44:57,660 [INFO] Detection completed: found 1 notes
+2025-08-12 15:45:08,232 [INFO] Detection completed: found 1 notes
+2025-08-12 15:45:41,050 [INFO] Detection completed: found 0 notes
+2025-08-12 15:49:07,109 [INFO] Detection completed: found 1 notes
+2025-08-12 15:49:14,596 [INFO] Detection completed: found 1 notes
+2025-08-12 15:49:37,025 [INFO] Detection completed: found 1 notes
+2025-08-12 15:50:09,981 [INFO] Detection completed: found 1 notes
+2025-08-12 15:50:36,700 [INFO] Detection completed: found 1 notes
+2025-08-12 15:50:51,483 [INFO] Detection completed: found 0 notes
+2025-08-12 15:51:17,451 [INFO] Detection completed: found 1 notes
+2025-08-12 15:51:28,248 [INFO] Detection completed: found 1 notes
+2025-08-12 15:51:40,321 [INFO] Detection completed: found 1 notes
+2025-08-12 15:51:55,921 [INFO] Detection completed: found 1 notes
+2025-08-12 15:52:52,158 [INFO] Detection completed: found 1 notes
+2025-08-13 17:42:38,719 [INFO] Detection completed: found 0 notes
+2025-08-13 17:42:38,720 [ERROR] Unhandled exception: 4 validation errors:
+  {'type': 'missing', 'loc': ('response', 'success'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
+  {'type': 'missing', 'loc': ('response', 'inference_time'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
+  {'type': 'missing', 'loc': ('response', 'detections'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
+  {'type': 'missing', 'loc': ('response', 'detection_count'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/fastapi/routing.py", line 327, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/fastapi/routing.py", line 176, in serialize_response
+    raise ResponseValidationError(
+fastapi.exceptions.ResponseValidationError: 4 validation errors:
+  {'type': 'missing', 'loc': ('response', 'success'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
+  {'type': 'missing', 'loc': ('response', 'inference_time'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
+  {'type': 'missing', 'loc': ('response', 'detections'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
+  {'type': 'missing', 'loc': ('response', 'detection_count'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
+

@@ -11,7 +11,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Train YOLOv8 model for Naira detection")
     parser.add_argument("--data", type=str, default="data/processed/data.yaml", help="Path to data.yaml")
     parser.add_argument("--epochs", type=int, default=2, help="Number of epochs")
-    parser.add_argument("--batch-size", type=int, default=16, help="Batch size")
+    parser.add_argument("--batch-size", type=int, default=8, help="Batch size")
     parser.add_argument("--img-size", type=int, default=640, help="Image size")
     parser.add_argument("--model-size", type=str, default="n", choices=["n", "s", "m", "l", "x"], help="YOLOv8 model size")
     parser.add_argument("--weights", type=str, default=None, help="Path to initial weights")

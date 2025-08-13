@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: naira-detection-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: MODEL_PATH
+        value: models/best.pt
+      - key: DATA_YAML
+        value: data/processed/data.yaml
+      - key: CONF_THRESHOLD
+        value: "0.5"
