@@ -4,12 +4,17 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
-# Prevent tzdata prompts
+# Prevent tzdata prompts and set locale
 ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
-# Install system dependencies for OpenCV, YOLOv8, and ffmpeg
+# Update package list and install system dependencies in separate steps
 RUN apt-get update && \
-    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl && \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
         libglib2.0-0 \
         libsm6 \
@@ -18,15 +23,24 @@ RUN apt-get update && \
         libgomp1 \
         libgl1-mesa-glx \
         libgthread-2.0-0 \
-        ffmpeg && \
+        libfontconfig1 \
+        libxrender1 \
+        libxtst6 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Install ffmpeg separately (sometimes causes issues)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ffmpeg && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Upgrade pip and install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire application
 COPY . .
