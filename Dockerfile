@@ -22,6 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Make sure scripts in .local are usable
 ENV PATH=/root/.local/bin:$PATH
+# Add the app directory to Python path so imports work correctly
+ENV PYTHONPATH=/app:/app/api
 
 # Copy the entire application
 COPY . .
