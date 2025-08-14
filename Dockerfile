@@ -8,11 +8,11 @@ WORKDIR /app
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies for OpenCV, YOLOv8, and ffmpeg
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update --fix-missing && apt-get upgrade -y && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
-    libxrender-dev \
+    libxrender1 \
     libgomp1 \
     libgl1-mesa-glx \
     libgthread-2.0-0 \
