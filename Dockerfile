@@ -1,24 +1,27 @@
-# Use Python 3.11 slim image
-FROM python:3.11-slim
+# Build stage
+FROM python:3.11 as builder
 
-# Set working directory
 WORKDIR /app
 
-# Prevent interactive prompts
-ENV DEBIAN_FRONTEND=noninteractive
+# Copy and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
 
-# Install only essential system dependencies
-RUN apt-get update && apt-get install -y \
+# Runtime stage
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy Python packages from builder stage
+COPY --from=builder /root/.local /root/.local
+
+# Install only essential runtime libraries
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
-    libgl1-mesa-glx \
-    libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
-
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Make sure scripts in .local are usable
+ENV PATH=/root/.local/bin:$PATH
 
 # Copy the entire application
 COPY . .
