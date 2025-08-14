@@ -221,3 +221,7 @@ fastapi.exceptions.ResponseValidationError: 4 validation errors:
   {'type': 'missing', 'loc': ('response', 'detections'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
   {'type': 'missing', 'loc': ('response', 'detection_count'), 'msg': 'Field required', 'input': {'error': 'Error processing base64 image: Incorrect padding'}}
 
+2025-08-14 10:11:33,793 [INFO] Detection completed: found 1 notes
+2025-08-14 10:11:48,003 [INFO] Detection completed: found 0 notes
+2025-08-14 10:11:56,470 [INFO] Detection completed: found 0 notes
+2025-08-14 10:12:37,667 [INFO] Detection completed: found 1 notes

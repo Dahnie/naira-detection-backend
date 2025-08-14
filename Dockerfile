@@ -15,9 +15,15 @@ WORKDIR /app
 # Copy Python packages from builder stage
 COPY --from=builder /root/.local /root/.local
 
-# Install only essential runtime libraries
+# Install essential runtime libraries including OpenCV dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
+    libgl1-mesa-glx \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    libgomp1 \
+    libgthread-2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Make sure scripts in .local are usable

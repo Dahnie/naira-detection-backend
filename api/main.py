@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
 # Import routers
-from .routers import detection
+from routers import detection
 
 # Configure logging
 logging.basicConfig(
