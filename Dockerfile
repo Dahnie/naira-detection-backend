@@ -4,43 +4,21 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
-# Prevent tzdata prompts and set locale
+# Prevent interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
 
-# Update package list and install system dependencies in separate steps
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        ca-certificates \
-        curl && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
-        libglib2.0-0 \
-        libsm6 \
-        libxext6 \
-        libxrender1 \
-        libgomp1 \
-        libgl1-mesa-glx \
-        libgthread-2.0-0 \
-        libfontconfig1 \
-        libxrender1 \
-        libxtst6 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Install ffmpeg separately (sometimes causes issues)
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ffmpeg && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Install only essential system dependencies
+RUN apt-get update && apt-get install -y \
+    libglib2.0-0 \
+    libgl1-mesa-glx \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Upgrade pip and install Python dependencies
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire application
 COPY . .
