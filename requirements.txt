@@ -4,23 +4,24 @@ uvicorn[standard]==0.24.0
 python-multipart==0.0.6
 jinja2==3.1.2
 aiofiles==23.2.1
-pydantic==2.5.0
+pydantic==2.6.4  # newer version with stable manylinux wheel
+pydantic-core==2.16.3  # ensure correct wheel
 
-# YOLOv8 and ML dependencies
-ultralytics>=8.0.196
-torch>=1.8.0
-torchvision>=0.9.0
-opencv-python-headless>=4.5.0
-Pillow>=8.2.0
-numpy>=1.21.0
-PyYAML>=5.3.1
+# YOLOv8 and ML dependencies (pin to wheel-friendly versions)
+ultralytics==8.0.196
+torch==2.1.0
+torchvision==0.16.0
+opencv-python-headless==4.8.1.78
+Pillow==10.0.1
+numpy==1.26.2
+PyYAML==6.0.1
 
 # Additional ML/Computer Vision dependencies
-matplotlib>=3.3.0
-seaborn>=0.11.0
-scipy>=1.4.1
-tqdm>=4.64.0
+matplotlib==3.8.0
+seaborn==0.12.2
+scipy==1.11.4
+tqdm==4.66.1
 
 # For image processing and base64 handling
-requests>=2.25.1
-psutil>=5.8.0
+requests==2.31.0
+psutil==5.9.8
