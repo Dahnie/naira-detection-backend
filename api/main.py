@@ -80,7 +80,14 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"detail": "An internal server error occurred"},
     )
 
+# FOR DEVELOPMENT ONLY
+# if __name__ == "__main__":
+#     # Run the API server
+#     port = int(os.environ.get("PORT", 8000))
+#     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
+
+
+# FOR PRODUCTION: # Use a production server like Gunicorn or Uvicorn with ASGI
 if __name__ == "__main__":
-    # Run the API server
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
+    import uvicorn
+    uvicorn.run("src.main:app", host="0.0.0.0", port=8000, reload=True)  # only for local dev
