@@ -15,12 +15,23 @@ WORKDIR /app
 # Copy Python packages from builder stage
 COPY --from=builder /root/.local /root/.local
 
-# Install only essential libraries for OpenCV headless
+# Install essential runtime libraries for OpenCV and ML libraries
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
+    libgl1-mesa-glx \
+    libglu1-mesa \
+    libxext6 \
+    libsm6 \
+    libxrender1 \
     libgomp1 \
+    libgthread-2.0-0 \
+    libfontconfig1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables to prevent OpenGL issues
+ENV QT_QPA_PLATFORM=offscreen
+ENV DISPLAY=:99
 
 # Make sure scripts in .local are usable
 ENV PATH=/root/.local/bin:$PATH
